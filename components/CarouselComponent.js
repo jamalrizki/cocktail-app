@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, Animated, Image } from 'react-native';
+import { Text, View, SafeAreaView, Animated, StyleSheet, Button  } from 'react-native';
 import { Card, Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
 import Carousel from 'react-native-snap-carousel';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const mapStateToProps = state => {
     return {
@@ -13,7 +14,27 @@ const mapStateToProps = state => {
 
     };
 };
+function Logo() {
+    return (
+        <Tile 
+        imageSrc={require('./images/Zest.png')}
+        featured
+        />
+    );
+}
 
+function Heading({nav}) {
+    return(
+        <View style={styles.View}>
+                <Text style={styles.HeaderText}>
+                    Popular Cocktails</Text>
+                <Button title="See All >" 
+                onPress={() => nav('Details')} 
+                style={styles.ButtonText} 
+                color="#595959" />        
+        </View>
+    );
+}
 function RenderItem(props) {
     const { item } = props;
 
@@ -28,17 +49,58 @@ function RenderItem(props) {
         );
     }
     if (item) {
-        
+
         return (
+         
             <Tile
                 title={item.name}
                 caption={item.description}
                 featured
                 imageSrc={{ uri: baseUrl + item.image }}
             />
+            
+            
         );
     }
     return <View />;
+}
+
+function RenderDetails({ details, nav }) {
+console.log({nav})
+    const renderDetailsItem = ({ item }) => {
+        
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+            <Card
+                featuredTitle={item.name}
+                image={{ uri: baseUrl + item.image }}
+                
+                
+                >
+
+                <Text style={{ margin: 10 }}>
+                    {item.description}
+                </Text>
+            </Card>
+            </TouchableOpacity>
+        );
+    };
+
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+            
+            <Carousel
+                layout={"default"}
+                data={details}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderDetailsItem}
+                 />
+        </View>
+
+
+
+    );
 }
 
 class Home extends Component {
@@ -70,45 +132,53 @@ class Home extends Component {
         title: 'Home'
     }
 
-    _renderItem({ item, index }) {
-        return (
 
-            <Card
-                featuredTitle={item.name}
-                image={{ uri: baseUrl + item.image }}>
-
-                <Text style={{ margin: 10 }}>
-                    {item.description}
-                </Text>
-            </Card>
-
-
-        )
-    }
 
     render() {
+        const { navigate } = this.props.navigation;
+        const campsiteId = this.props.navigation.getParam('campsiteId');
+        const details = this.props.promotions.promotions.filter(detail => detail.campsiteid === campsiteId);
         return (
+
             <Animated.ScrollView style={{ transform: [{ scale: this.state.scaleValue }] }}>
-                <RenderItem
-                    item={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
-                    isLoading={this.props.campsites.isLoading}
-                    errMess={this.props.campsites.errMess}
-                />
+    
+                <Logo />
+                <Heading nav={navigate} />
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#f2f2f2', paddingTop: 50, }}>
-                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
-                        <Carousel
-                            layout={"default"}
-                            ref={ref => this.carousel = ref}
-                            data={this.props.campsites.campsites}
-                            sliderWidth={300}
-                            itemWidth={300}
-                            renderItem={this._renderItem}
-                            onSnapToItem={index => this.setState({ activeIndex: index })} />
-                    </View>
+                    <RenderDetails details={details}
+                    nav={navigate} 
+                    
+                    />
                 </SafeAreaView>
             </Animated.ScrollView>
         );
     }
 }
+const styles = StyleSheet.create({
+    
+    HeaderText: {
+        color: '#595959',
+        fontSize: 18,
+        flex: 1,
+        flexDirection: 'row',
+        margin: 10,
+        fontWeight: "bold"
+    },
+    ButtonText: {
+        color: '#0D0D0D',
+        fontSize: 16,
+        flex: 1,
+        flexDirection: 'row',
+       
+    },
+    View: {
+        backgroundColor: '#f2f2f2',
+        flex: 1, 
+        flexDirection: 'row',
+        padding: 6,
+        paddingTop: 20,
+    },
+
+});
 
 export default connect(mapStateToProps)(Home);

@@ -57,10 +57,11 @@ const HomeNavigator = createStackNavigator(
         Home: {
             screen: Home,
             navigationOptions: ({ navigation }) => ({
-                headerLeft: <MaterialCommunityIcons name="glass-wine" color='#f2f2f2' size={26} />
+                headerLeft: <MaterialCommunityIcons name="home" color='#f2f2f2' size={26} />
             })
         },
-        CocktailInfo: { screen: CocktailInfo }
+        CocktailInfo: { screen: CocktailInfo },
+        Details: { screen: Cocktails }
     },
     {
         initialRouteName: 'Home',
