@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { Tile } from 'react-native-elements';
+import { Tile, } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
 import * as Animatable from 'react-native-animatable';
+
 
 const mapStateToProps = state => {
     return {
@@ -19,6 +20,7 @@ class Cocktails extends Component {
     }
 
     render() {
+
         const { navigate } = this.props.navigation;
         const renderDirectoryItem = ({ item }) => {
             return (
@@ -46,11 +48,13 @@ class Cocktails extends Component {
         }
 
         return (
-            <FlatList
-                data={this.props.campsites.campsites}
-                renderItem={renderDirectoryItem}
-                keyExtractor={item => item.id.toString()}
-            />
+                <View>
+                <FlatList
+                    data={this.props.campsites.campsites}
+                    renderItem={renderDirectoryItem}
+                    keyExtractor={item => item.id.toString()}
+                />
+                </View>
         );
     }
 }

@@ -11,21 +11,22 @@ import { createStackNavigator } from 'react-navigation-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createAppContainer } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import {
-    fetchCampsites, fetchComments, fetchPromotions,
-    fetchIngredients, fetchInstructions, fetchThings, fetchDetails
+    fetchCampsites, fetchComments, 
+    fetchIngredients, fetchInstructions, fetchThings, fetchDetails, fetchPopulars, 
 } from '../redux/ActionCreators';
 
 const mapDispatchToProps = {
     fetchCampsites,
     fetchComments,
-    fetchPromotions,
     fetchIngredients,
     fetchInstructions,
     fetchThings,
-    fetchDetails
+    fetchDetails,
+    fetchPopulars,
+   
+
 };
 
 const CocktailNavigator = createStackNavigator(
@@ -162,11 +163,12 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchCampsites();
         this.props.fetchComments();
-        this.props.fetchPromotions();
         this.props.fetchIngredients();
         this.props.fetchInstructions();
         this.props.fetchThings();
         this.props.fetchDetails();
+        this.props.fetchPopulars();
+        
 
     }
 

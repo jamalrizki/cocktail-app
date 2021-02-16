@@ -3,12 +3,13 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { campsites } from './campsites';
 import { comments } from './comments';
-import { promotions } from './promotions';
 import { favorites } from './favorites';
 import { ingredients } from './ingredients';
 import { instructions } from './instructions';
 import { things } from './things';
-import { details } from './details'
+import { details } from './details';
+import { populars } from './populars';
+
 
 
 export const ConfigureStore = () => {
@@ -16,12 +17,13 @@ export const ConfigureStore = () => {
         combineReducers({
             campsites,
             comments,
-            promotions,
             favorites,
             ingredients,
             instructions,
             things,
-            details
+            details,
+            populars,
+        
         }),
         applyMiddleware(thunk, logger)
     );

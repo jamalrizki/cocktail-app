@@ -1,7 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
-import { ingredients } from './ingredients';
-import { instructions } from './instructions';
+
 
 export const fetchComments = () => dispatch => {
     return fetch(baseUrl + 'comments')
@@ -68,43 +67,6 @@ export const campsitesFailed = errMess => ({
 export const addCampsites = campsites => ({
     type: ActionTypes.ADD_CAMPSITES,
     payload: campsites
-});
-
-export const fetchPromotions = () => dispatch => {
-    
-    dispatch(promotionsLoading());
-
-    return fetch(baseUrl + 'promotions')
-        .then(response => {
-                if (response.ok) {
-                    return response;
-                } else {
-                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                    error.response = response;
-                    throw error;
-                }
-            },
-            error => {
-                const errMess = new Error(error.message);
-                throw errMess;
-            })
-        .then(response => response.json())
-        .then(promotions => dispatch(addPromotions(promotions)))
-        .catch(error => dispatch(promotionsFailed(error.message)));
-};
-
-export const promotionsLoading = () => ({
-    type: ActionTypes.PROMOTIONS_LOADING
-});
-
-export const promotionsFailed = errMess => ({
-    type: ActionTypes.PROMOTIONS_FAILED,
-    payload: errMess
-});
-
-export const addPromotions = promotions => ({
-    type: ActionTypes.ADD_PROMOTIONS,
-    payload: promotions
 });
 
 
@@ -261,3 +223,41 @@ export const addDetails = details => ({
     type: ActionTypes.ADD_DETAILS,
     payload: details
 });
+
+export const fetchPopulars = () => dispatch => {
+    
+    dispatch(popularsLoading());
+
+    return fetch(baseUrl + 'populars')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            })
+        .then(response => response.json())
+        .then(populars => dispatch(addPopulars(populars)))
+        .catch(error => dispatch(promotionsFailed(error.message)));
+};
+
+export const popularsLoading = () => ({
+    type: ActionTypes.POPULARS_LOADING
+});
+
+export const popularsFailed = errMess => ({
+    type: ActionTypes.POPULARS_FAILED,
+    payload: errMess
+});
+
+export const addPopulars = populars => ({
+    type: ActionTypes.ADD_POPULARS,
+    payload: populars
+});
+
