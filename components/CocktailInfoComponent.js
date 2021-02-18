@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList, Button, Modal, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, FlatList, Button, Modal, StyleSheet, Share } from 'react-native';
 import { Card, Icon, Rating, Input, TextInput } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
 import { postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const mapStateToProps = state => {
     return {
@@ -19,12 +20,21 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     postFavorite: campsiteId => (postFavorite(campsiteId)),
-    postComment: (campsiteId, rating, author) => (postComment(campsiteId, rating, author)),
+    postComment: (campsiteId, rating) => (postComment(campsiteId, rating)),
 };
 
 function RenderCampsite(props) {
 
     const { campsite } = props;
+    const shareCampsite = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: `${title}: ${message} ${url}`,
+            url: url
+        },{
+            dialogTitle: 'Share ' + title
+        });
+    };
 
     if (campsite) {
         return (
@@ -36,23 +46,26 @@ function RenderCampsite(props) {
                         {campsite.description}
                     </Text>
                     <View style={styles.cardRow}>
-                        <Icon
-                            name={props.favorite ? 'heart' : 'heart-o'}
-                            type='font-awesome'
-                            color='#f50'
-                            raised
-                            reverse
+                        <MaterialCommunityIcons 
+                            name={props.favorite ? 'bookmark-plus' : 'bookmark-plus-outline'} 
+                            color='#595959' 
+                            size={55}
                             onPress={() => props.favorite ?
                                 console.log('Already set as a favorite') : props.markFavorite()}
-                        />
-                        <Icon
-                            name='pencil'
-                            type='font-awesome'
-                            color='#5637DD'
-                            raised
-                            reverse
+                            />
+                        <MaterialCommunityIcons 
+                            name='star' 
+                            color='#ffd700' 
+                            size={55}
                             onPress={() => props.onShowModal()}
-                        />
+                            />
+                        <MaterialCommunityIcons 
+                            name='share' 
+                            color='#595959'
+                            size={55}
+                            onPress={() => shareCampsite(campsite.name, campsite.description, baseUrl + campsite.image)} 
+
+                            />
                     </View>
                 </Card>
             </Animatable.View>
@@ -127,7 +140,7 @@ function RenderComments({ comments }) {
 
     return (
         <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
-            <Card title='Comments'>
+            <Card title='Ratings'>
                 <FlatList
                     data={comments}
                     renderItem={renderCommentItem}
@@ -184,6 +197,7 @@ class CocktailInfo extends Component {
         const comments = this.props.comments.comments.filter(comment => comment.campsiteId === campsiteId);
         const ingredients = this.props.ingredients.ingredients.filter(ingredient => ingredient.campsiteId === campsiteId);
         const instructions = this.props.instructions.instructions.filter(instruction => instruction.campsiteId === campsiteId);
+        
         return (
             <ScrollView>
                 <RenderCampsite campsite={campsite}

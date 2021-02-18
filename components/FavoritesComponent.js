@@ -29,6 +29,7 @@ class Favorites extends Component {
 
     render() {
         const  check  = this.props.favorites;
+        console.log(check)
         const { navigate } = this.props.navigation;
         
         const renderFavoriteItem = ({ item }) => {
@@ -86,11 +87,14 @@ class Favorites extends Component {
                 </View>
             );
         }
-        /*if (Object.entries(renderFavoriteItem).length == 0) {
+        if(Object.entries(check).length === 0)
+         {
             return (   
-                <Text>You Currently Don't Have Any Favorites</Text>
+                <View style={styles.favView}>
+                <Text>You Currently Don't Have Any Favorites Saved</Text>
+                </View>
             );
-        } */
+        } 
         return (
             <Animatable.View animation="fadeInRightBig" duration={2000}>
                 <FlatList
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
     },
     favView: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
         flex: 1
     },

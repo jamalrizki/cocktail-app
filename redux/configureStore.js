@@ -9,12 +9,21 @@ import { instructions } from './instructions';
 import { things } from './things';
 import { details } from './details';
 import { populars } from './populars';
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
+
+const config = {
+    key: 'root',
+    storage,
+    debug: true
+}
 
 
 
 export const ConfigureStore = () => {
     const store = createStore(
-        combineReducers({
+        
+        persistCombineReducers(config, {
             campsites,
             comments,
             favorites,
@@ -28,5 +37,7 @@ export const ConfigureStore = () => {
         applyMiddleware(thunk, logger)
     );
 
-    return store;
+    const persistor = persistStore(store);
+
+    return { persistor, store };
 }

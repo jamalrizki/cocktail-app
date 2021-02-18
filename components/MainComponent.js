@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Home from './CarouselComponent'
-
 import Cocktails from './CocktailComponent';
 import CocktailInfo from './CocktailInfoComponent';
 import Favorites from './FavoritesComponent';
 import Things from './ThingsComponent';
 import Details from './DetailsComponent';
+import Search from './SearchComponent';
 import { View, Platform, StyleSheet  } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,6 +16,7 @@ import {
     fetchCampsites, fetchComments, 
     fetchIngredients, fetchInstructions, fetchThings, fetchDetails, fetchPopulars, 
 } from '../redux/ActionCreators';
+
 
 const mapDispatchToProps = {
     fetchCampsites,
@@ -53,6 +54,30 @@ const CocktailNavigator = createStackNavigator(
     }
 );
 
+const SearchNavigator = createStackNavigator(
+    {
+        Search: {
+            screen: Search,
+            navigationOptions: ({ navigation }) => ({
+                headerLeft: <MaterialCommunityIcons name="magnify" color='#f2f2f2' size={26} />
+            })
+        },
+        CocktailInfo: { screen: CocktailInfo }
+    },
+    {
+        initialRouteName: 'Search',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#0D0D0D'
+            },
+            headerTintColor: '#f2f2f2',
+            headerTitleStyle: {
+                color: '#f2f2f2'
+            }
+        }
+    }
+);
+
 const HomeNavigator = createStackNavigator(
     {
         Home: {
@@ -77,6 +102,7 @@ const HomeNavigator = createStackNavigator(
         }
     }
 );
+
 
 
 const ThingsNavigator = createStackNavigator(
@@ -135,6 +161,11 @@ const Tabbar1 = createMaterialBottomTabNavigator(
             <MaterialCommunityIcons name="glass-cocktail" color={tintColor} size={26} />
         )
     }},
+    Search: { screen: SearchNavigator, navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+            <MaterialCommunityIcons name="magnify" color={tintColor} size={26} />
+        )
+    }}, 
     Things: { screen: ThingsNavigator, navigationOptions: {
         tabBarLabel: 'Tools',
         tabBarIcon: ({tintColor}) => (
@@ -143,10 +174,9 @@ const Tabbar1 = createMaterialBottomTabNavigator(
     }},
     Favorites: { screen: FavoritesNavigator, navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-            <MaterialCommunityIcons name="content-save-outline" color={tintColor} size={26} />
+            <MaterialCommunityIcons name="bookmark-plus-outline" color={tintColor} size={26} />
         )
-    }},
-      
+    }},      
     },
     {
       initialRouteName: 'Home',

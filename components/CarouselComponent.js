@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Carousel from 'react-native-snap-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Loading from './LoadingComponent';
 
 
 const mapStateToProps = state => {
@@ -49,7 +50,6 @@ function RenderDetails({ details, nav }) {
                     featuredTitle={item.name}
                     image={{ uri: baseUrl + item.image }}
 
-
                 >
 
                     <Text style={{ margin: 10 }}>
@@ -59,6 +59,7 @@ function RenderDetails({ details, nav }) {
             </TouchableOpacity>
         );
     };
+
 
     return (
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
@@ -113,15 +114,15 @@ class Home extends Component {
         const campsiteId = this.props.navigation.getParam('campsiteId');
         const details = this.props.populars.populars.filter(detail => detail.campsiteid === campsiteId);
 
+        
         return (
-
             <Animated.ScrollView style={{ transform: [{ scale: this.state.scaleValue }] }}>
 
                 <Logo />
                 <Heading nav={navigate} />
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#f2f2f2', paddingTop: 50, }}>
                     <RenderDetails details={details}
-                                    nav={navigate} />
+                        nav={navigate} />
                 </SafeAreaView>
             </Animated.ScrollView>
         );

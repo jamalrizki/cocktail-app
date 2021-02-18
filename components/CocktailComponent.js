@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
 import * as Animatable from 'react-native-animatable';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { color } from 'react-native-reanimated';
 
 
 const mapStateToProps = state => {
@@ -14,21 +16,24 @@ const mapStateToProps = state => {
 };
 
 class Cocktails extends Component {
+    
 
     static navigationOptions = {
         title: 'Cocktails'
     }
 
     render() {
-
+       
         const { navigate } = this.props.navigation;
         const renderDirectoryItem = ({ item }) => {
             return (
+                
                 <Animatable.View animation='fadeInRightBig' duration={2000}>
                     <Tile
                         title={item.name}
-                        caption={item.description}
+                        titleStyle={{fontWeight: "bold", fontSize: 40}}
                         featured
+                        caption="Click For Details"
                         onPress={() => navigate('CocktailInfo', { campsiteId: item.id })}
                         imageSrc={{ uri: baseUrl + item.image }}
                     />
