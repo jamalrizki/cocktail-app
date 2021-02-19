@@ -3,12 +3,9 @@ import { View, Text, Image, Platform, StatusBar } from 'react-native';
 import CompleteFlatList from 'react-native-complete-flatlist';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { Loading } from './LoadingComponent';
+
 import { baseUrl } from '../shared/baseUrl';
-import { SwipeRow } from 'react-native-swipe-list-view';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { deleteFavorite } from '../redux/ActionCreators';
-import * as Animatable from 'react-native-animatable';
+
 
 const mapStateToProps = state => {
   return {
@@ -32,7 +29,7 @@ class Search extends Component {
             title={item.name}
             subtitle={item.description}
             leftAvatar={{source: {uri: baseUrl + item.image}}}
-              onPress={() => navigate('CocktailInfo', {campsiteId: item.id})}
+            onPress={() => navigate('CocktailInfo', {campsiteId: item.id})}
           />
       );
     };

@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, Animated, StyleSheet, Button } from 'react-native';
+import { Text, View, SafeAreaView, ScrollView, StyleSheet, Button } from 'react-native';
 import { Card, Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Carousel from 'react-native-snap-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Loading from './LoadingComponent';
+
 
 
 const mapStateToProps = state => {
     return {
         campsites: state.campsites,
         populars: state.populars,
-
-
-
     };
 };
+
 function Logo() {
     return (
         <Tile
@@ -41,6 +39,7 @@ function Heading({ nav }) {
 
 
 function RenderDetails({ details, nav }) {
+
 
     const renderDetailsItem = ({ item }) => {
 
@@ -72,36 +71,11 @@ function RenderDetails({ details, nav }) {
                 renderItem={renderDetailsItem}
             />
         </View>
-
-
-
     );
 }
 
 class Home extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            scaleValue: new Animated.Value(0),
-            activeIndex: 0,
-        };
-    }
-
-    animate() {
-        Animated.timing(
-            this.state.scaleValue,
-            {
-                toValue: 1,
-                duration: 1500,
-                useNativeDriver: true
-            }
-        ).start();
-    }
-
-    componentDidMount() {
-        this.animate();
-    }
 
     static navigationOptions = {
         title: 'Home'
@@ -114,18 +88,19 @@ class Home extends Component {
         const campsiteId = this.props.navigation.getParam('campsiteId');
         const details = this.props.populars.populars.filter(detail => detail.campsiteid === campsiteId);
 
-        
-        return (
-            <Animated.ScrollView style={{ transform: [{ scale: this.state.scaleValue }] }}>
 
+        return (
+            <ScrollView  >
                 <Logo />
                 <Heading nav={navigate} />
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#f2f2f2', paddingTop: 50, }}>
                     <RenderDetails details={details}
-                        nav={navigate} />
+                        nav={navigate}
+                    />
                 </SafeAreaView>
-            </Animated.ScrollView>
+            </ScrollView>
         );
+
     }
 }
 const styles = StyleSheet.create({

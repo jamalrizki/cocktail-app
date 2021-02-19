@@ -22,7 +22,7 @@ class Things extends Component {
         const { navigate } = this.props.navigation;
         const renderToolsItem = ({ item }) => {
             return (
-                <Animatable.View animation='fadeInRightBig' duration={2000}>
+                <Animatable.View animation='fadeInRightBig' duration={1000}>
                     <ListItem
                             title={item.name}
                             subtitle={item.description}

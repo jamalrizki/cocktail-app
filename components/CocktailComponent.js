@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
 import * as Animatable from 'react-native-animatable';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { color } from 'react-native-reanimated';
+
 
 
 const mapStateToProps = state => {
@@ -28,7 +27,7 @@ class Cocktails extends Component {
         const renderDirectoryItem = ({ item }) => {
             return (
                 
-                <Animatable.View animation='fadeInRightBig' duration={2000}>
+                <Animatable.View animation='fadeInRightBig' duration={1000}>
                     <Tile
                         title={item.name}
                         titleStyle={{fontWeight: "bold", fontSize: 40}}

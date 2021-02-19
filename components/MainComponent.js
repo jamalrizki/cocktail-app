@@ -6,6 +6,7 @@ import Favorites from './FavoritesComponent';
 import Things from './ThingsComponent';
 import Details from './DetailsComponent';
 import Search from './SearchComponent';
+import Landing from './LandingComponent';
 import { View, Platform, StyleSheet  } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -29,6 +30,30 @@ const mapDispatchToProps = {
    
 
 };
+
+const LandingNavigator = createStackNavigator(
+    {
+        Landing: {
+            screen: Landing,
+            navigationOptions: ({ navigation }) => ({
+                headerLeft: <MaterialCommunityIcons name="glass-cocktail" color='#f2f2f2' size={26} />
+            })
+        },
+        Home: { screen: Home }
+    },
+    {
+        initialRouteName: 'Landing',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#0D0D0D'
+            },
+            headerTintColor: '#f2f2f2',
+            headerTitleStyle: {
+                color: '#f2f2f2'
+            }
+        }
+    }
+);
 
 const CocktailNavigator = createStackNavigator(
     {
@@ -87,7 +112,8 @@ const HomeNavigator = createStackNavigator(
             })
         },
         CocktailInfo: { screen: CocktailInfo },
-        Details: { screen: Cocktails }
+        Details: { screen: Cocktails },
+        Landing: { screen: Landing }
     },
     {
         initialRouteName: 'Home',
@@ -176,7 +202,7 @@ const Tabbar1 = createMaterialBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
             <MaterialCommunityIcons name="bookmark-plus-outline" color={tintColor} size={26} />
         )
-    }},      
+    }},    
     },
     {
       initialRouteName: 'Home',
