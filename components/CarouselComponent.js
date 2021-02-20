@@ -34,7 +34,7 @@ function Heading({ nav }) {
                 onPress={() => nav('Details')}
                 style={styles.ButtonText}
                 color="#595959"
-             />
+            />
         </View>
     );
 }
@@ -137,7 +137,7 @@ function TequilaPic() {
 ////////Cards////////
 function RenderDetails({ details, nav }) {
 
-     const renderDetailsItem = ({ item }) => {
+    const renderDetailsItem = ({ item }) => {
 
         return (
             <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
@@ -172,165 +172,165 @@ function RenderTequila({ tequila, nav }) {
 
     const renderTequilaItem = ({ item }) => {
 
-       return (
-           <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
-               <Card
-                   featuredTitle={item.name}
-                   image={{ uri: baseUrl + item.image }}
-               >
-                   <Text style={{ margin: 10 }}>
-                       {item.description}
-                   </Text>
-               </Card>
-           </TouchableOpacity>
-       );
-   };
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+                <Card
+                    featuredTitle={item.name}
+                    image={{ uri: baseUrl + item.image }}
+                >
+                    <Text style={{ margin: 10 }}>
+                        {item.description}
+                    </Text>
+                </Card>
+            </TouchableOpacity>
+        );
+    };
 
 
-   return (
-       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
 
-           <Carousel
-               layout={"default"}
-               data={tequila}
-               sliderWidth={300}
-               itemWidth={300}
-               renderItem={renderTequilaItem}
-           />
-       </View>
-   );
+            <Carousel
+                layout={"default"}
+                data={tequila}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderTequilaItem}
+            />
+        </View>
+    );
 }
 
 function RenderGin({ gin, nav }) {
 
     const renderGinItem = ({ item }) => {
 
-       return (
-           <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
-               <Card
-                   featuredTitle={item.name}
-                   image={{ uri: baseUrl + item.image }}
-               >
-                   <Text style={{ margin: 10 }}>
-                       {item.description}
-                   </Text>
-               </Card>
-           </TouchableOpacity>
-       );
-   };
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+                <Card
+                    featuredTitle={item.name}
+                    image={{ uri: baseUrl + item.image }}
+                >
+                    <Text style={{ margin: 10 }}>
+                        {item.description}
+                    </Text>
+                </Card>
+            </TouchableOpacity>
+        );
+    };
 
 
-   return (
-       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
 
-           <Carousel
-               layout={"default"}
-               data={gin}
-               sliderWidth={300}
-               itemWidth={300}
-               renderItem={renderGinItem}
-           />
-       </View>
-   );
+            <Carousel
+                layout={"default"}
+                data={gin}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderGinItem}
+            />
+        </View>
+    );
 }
 
 function RenderVodka({ vodka, nav }) {
 
     const renderVodkaItem = ({ item }) => {
 
-       return (
-           <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
-               <Card
-                   featuredTitle={item.name}
-                   image={{ uri: baseUrl + item.image }}
-               >
-                   <Text style={{ margin: 10 }}>
-                       {item.description}
-                   </Text>
-               </Card>
-           </TouchableOpacity>
-       );
-   };
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+                <Card
+                    featuredTitle={item.name}
+                    image={{ uri: baseUrl + item.image }}
+                >
+                    <Text style={{ margin: 10 }}>
+                        {item.description}
+                    </Text>
+                </Card>
+            </TouchableOpacity>
+        );
+    };
 
 
-   return (
-       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
 
-           <Carousel
-               layout={"default"}
-               data={vodka}
-               sliderWidth={300}
-               itemWidth={300}
-               renderItem={renderVodkaItem}
-           />
-       </View>
-   );
+            <Carousel
+                layout={"default"}
+                data={vodka}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderVodkaItem}
+            />
+        </View>
+    );
 }
 
 function RenderRum({ rum, nav }) {
 
     const renderRumItem = ({ item }) => {
 
-       return (
-           <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
-               <Card
-                   featuredTitle={item.name}
-                   image={{ uri: baseUrl + item.image }}
-               >
-                   <Text style={{ margin: 10 }}>
-                       {item.description}
-                   </Text>
-               </Card>
-           </TouchableOpacity>
-       );
-   };
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+                <Card
+                    featuredTitle={item.name}
+                    image={{ uri: baseUrl + item.image }}
+                >
+                    <Text style={{ margin: 10 }}>
+                        {item.description}
+                    </Text>
+                </Card>
+            </TouchableOpacity>
+        );
+    };
 
 
-   return (
-       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
 
-           <Carousel
-               layout={"default"}
-               data={rum}
-               sliderWidth={300}
-               itemWidth={300}
-               renderItem={renderRumItem}
-           />
-       </View>
-   );
+            <Carousel
+                layout={"default"}
+                data={rum}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderRumItem}
+            />
+        </View>
+    );
 }
 
 function RenderWhiskey({ whiskey, nav }) {
 
     const renderWhiskeyItem = ({ item }) => {
 
-       return (
-           <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
-               <Card
-                   featuredTitle={item.name}
-                   image={{ uri: baseUrl + item.image }}
-               >
-                   <Text style={{ margin: 10 }}>
-                       {item.description}
-                   </Text>
-               </Card>
-           </TouchableOpacity>
-       );
-   };
+        return (
+            <TouchableOpacity onPress={() => nav('CocktailInfo', { campsiteId: item.id })}>
+                <Card
+                    featuredTitle={item.name}
+                    image={{ uri: baseUrl + item.image }}
+                >
+                    <Text style={{ margin: 10 }}>
+                        {item.description}
+                    </Text>
+                </Card>
+            </TouchableOpacity>
+        );
+    };
 
 
-   return (
-       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
+    return (
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
 
-           <Carousel
-               layout={"default"}
-               data={whiskey}
-               sliderWidth={300}
-               itemWidth={300}
-               renderItem={renderWhiskeyItem}
-           />
-       </View>
-   );
+            <Carousel
+                layout={"default"}
+                data={whiskey}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={renderWhiskeyItem}
+            />
+        </View>
+    );
 }
 ////////Cards////////
 
@@ -363,28 +363,28 @@ class Home extends Component {
                     />
                     <RumPic />
                     <RumDir />
-                    <RenderRum rum= {rum}
-                    nav={navigate}
+                    <RenderRum rum={rum}
+                        nav={navigate}
                     />
                     <GinPic />
                     <GinDir />
-                    <RenderGin gin= {gin}
-                    nav={navigate}
+                    <RenderGin gin={gin}
+                        nav={navigate}
                     />
                     <WhiskeyPic />
                     <WhiskeyDir />
-                    <RenderWhiskey whiskey= {whiskey}
-                    nav={navigate}
+                    <RenderWhiskey whiskey={whiskey}
+                        nav={navigate}
                     />
                     <VodkaPic />
                     <VodkaDir />
-                    <RenderVodka vodka= {vodka}
-                    nav={navigate}
+                    <RenderVodka vodka={vodka}
+                        nav={navigate}
                     />
                     <TequilaPic />
                     <TequilaDir />
-                    <RenderTequila tequila= {tequila}
-                    nav={navigate}
+                    <RenderTequila tequila={tequila}
+                        nav={navigate}
                     />
                 </SafeAreaView>
             </ScrollView>
