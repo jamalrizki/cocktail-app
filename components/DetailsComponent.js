@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList, Button, Modal, StyleSheet } from 'react-native';
-import { Card, Icon, Rating, Input, TextInput } from 'react-native-elements';
+import { Text, View, ScrollView, FlatList, StyleSheet } from 'react-native';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import * as Animatable from 'react-native-animatable';
@@ -77,14 +77,13 @@ class Details extends Component {
         const details = this.props.details.details.filter(detail => detail.campsiteId === campsiteId);
         return (
             <ScrollView>
-                <RenderThing thing={thing}
-                />
-                <RenderDetails details={details} />
-                
+                <RenderThing thing={thing} />
+                <RenderDetails details={details} />    
             </ScrollView>
         );
     }
 }
+
 const styles = StyleSheet.create({
     cardRow: {
         alignItems: 'center',

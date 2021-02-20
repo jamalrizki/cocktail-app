@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, Button, Modal, StyleSheet, Share } from 'react-native';
-import { Card, Icon, Rating, Input, TextInput } from 'react-native-elements';
+import { Card, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';

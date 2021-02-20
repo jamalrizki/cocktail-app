@@ -12,6 +12,7 @@ const mapStateToProps = state => {
     };
 };
 
+
 class Things extends Component {
 
     static navigationOptions = {

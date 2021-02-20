@@ -6,7 +6,6 @@ import Favorites from './FavoritesComponent';
 import Things from './ThingsComponent';
 import Details from './DetailsComponent';
 import Search from './SearchComponent';
-import Landing from './LandingComponent';
 import { View, Platform, StyleSheet  } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -30,30 +29,6 @@ const mapDispatchToProps = {
    
 
 };
-
-const LandingNavigator = createStackNavigator(
-    {
-        Landing: {
-            screen: Landing,
-            navigationOptions: ({ navigation }) => ({
-                headerLeft: <MaterialCommunityIcons name="glass-cocktail" color='#f2f2f2' size={26} />
-            })
-        },
-        Home: { screen: Home }
-    },
-    {
-        initialRouteName: 'Landing',
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#0D0D0D'
-            },
-            headerTintColor: '#f2f2f2',
-            headerTitleStyle: {
-                color: '#f2f2f2'
-            }
-        }
-    }
-);
 
 const CocktailNavigator = createStackNavigator(
     {
@@ -112,8 +87,7 @@ const HomeNavigator = createStackNavigator(
             })
         },
         CocktailInfo: { screen: CocktailInfo },
-        Details: { screen: Cocktails },
-        Landing: { screen: Landing }
+        Details: { screen: Cocktails }
     },
     {
         initialRouteName: 'Home',
@@ -128,8 +102,6 @@ const HomeNavigator = createStackNavigator(
         }
     }
 );
-
-
 
 const ThingsNavigator = createStackNavigator(
     {
@@ -224,8 +196,6 @@ class Main extends Component {
         this.props.fetchThings();
         this.props.fetchDetails();
         this.props.fetchPopulars();
-        
-
     }
 
     render() {
@@ -242,34 +212,6 @@ class Main extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    drawerHeader: {
-        backgroundColor: '#f2f2f2',
-        height: 140,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'row'
-    },
-    drawerHeaderText: {
-        color: '#f2f2f2',
-        fontSize: 24,
-        fontWeight: 'bold'
-    },
-    drawerImage: {
-        margin: 10,
-        height: 50,
-        width: 50
-    },
-    stackIcon: {
-        marginLeft: 10,
-        color: '#f2f2f2',
-        fontSize: 24
-    }
-});
 
 
 export default connect(null, mapDispatchToProps)(Main);

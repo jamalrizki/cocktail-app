@@ -7,7 +7,6 @@ import Loading from './LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
 
-
 const mapStateToProps = state => {
     return {
         campsites: state.campsites
@@ -16,7 +15,6 @@ const mapStateToProps = state => {
 
 class Cocktails extends Component {
     
-
     static navigationOptions = {
         title: 'Cocktails'
     }
